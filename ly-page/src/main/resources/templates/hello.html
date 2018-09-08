@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>hello</title>
+</head>
+<body>
+    <h1>
+        <!--OGNL表达式-->
+        欢迎您: <span th:text="${user['name']}">请登录</span><br>
+        欢迎您: <span th:text="${user.friend.name}">请登录</span><br>
+         欢迎您: <span th:text="'<font><i>哈哈</i></font>'">请登录</span><br>
+         欢迎您: <span th:utext="'<font><i>哈哈</i></font>'">请登录</span><br>
+    </h1>
+    <br>
+    <h1 th:object="${user}">
+        <!--可以调用方法-->
+        姓名: <p th:text="*{name.toUpperCase().substring(4)}"></p>
+        年龄: <p th:text="*{age}"></p>
+        生日: <p th:text="*{#dates.format(birthday,'yyyy-MM--dd')}"></p>
+        朋友姓名: <p th:text="*{friend.name}"></p>
+        朋友年龄: <p th:text="*{friend.age}"></p>
+    </h1>
+
+    <h1>
+        <p th:text="'欢迎您: '+ ${user.name} + '!'"></p>
+        <p th:text="|欢迎您: ${user.name}|"></p>
+
+        <!--<html xmlns:th="http://www.thymeleaf.org">-->
+    </h1>
+</body>
+</html>
